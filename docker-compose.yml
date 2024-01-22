@@ -1,7 +1,7 @@
 version: "3"
 services:
   app:
-    image: "php:7.4-fpm"
+    image: "php:8.3-fpm"
     volumes:
       - ./app:/var/www/html
     working_dir: /var/www/html
