@@ -1,20 +1,17 @@
-# Use an official PHP runtime as a parent image
 FROM php:8.3-fpm
-
-# Set the working directory to /var/www/html
-WORKDIR /var/www/html
-# Install any needed extensions
-RUN docker-php-ext-install pdo pdo_mysql
-# Install Composer globally
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-# Install Supervisor for process control
-RUN apt-get update && apt-get install -y supervisor && \
-    mkdir -p /var/log/supervisor
-# Copy the application code into the container
-COPY . /var/www/html
-# Run Composer install
-RUN composer install
-# Copy the Laravel worker configuration
-COPY ./worker.conf /etc/supervisor/conf.d/
-# Start Supervisor to manage the Laravel worker process
-CMD ["/usr/bin/supervisord", "-n"]
+ARG user
+ARG uid
+RUN apt update && apt install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev
+RUN apt clean && rm -rf /var/lib/apt/lists/*
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
+WORKDIR /var/www
+USER $user
