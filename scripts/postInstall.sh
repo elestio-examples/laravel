@@ -10,4 +10,4 @@ sleep 60s;
 docker-compose exec -T -u root app bash -c "composer install"
 docker-compose exec -T -u root app bash -c "php artisan migrate"
 docker-compose exec -T -u root app bash -c "php artisan key:generate"
-docker-compose exec -T -u root app bash -c "php artisan queue:work"
+# docker-compose exec -T -u root app bash -c "php artisan queue:work"

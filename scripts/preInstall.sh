@@ -1,6 +1,8 @@
 # set env vars
 set -o allexport; source .env; set +o allexport;
 
+chmod -R 777 ./app
+
 cat << EOT >> ./app/.env
 APP_NAME=Laravel
 APP_ENV=local
