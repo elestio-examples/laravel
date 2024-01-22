@@ -24,3 +24,13 @@ git clone YOUR_REPOSITORY_URL
 Try to make some change in your Laravel project that is in `app` folder, then push to the git repository
 
 After few seconds to few minutes your change will be deployed on your CI/CD target 🚀
+
+# Production
+
+To switch your environment to production, follow these steps within your CI/CD project on `elestio`:
+
+1.  Navigate to the Tools tab and click on the `VS Code` button.
+
+2.  In the opened Visual Studio Code environment, locate the `app > .env ` file within your Laravel project.
+
+3.  Change `APP_ENV` value to `production`

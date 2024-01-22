@@ -6,7 +6,7 @@ chmod -R 777 ./app
 cat << EOT >> ./app/.env
 APP_NAME=Laravel
 APP_ENV=local
-APP_KEY=base64:ppcUOF6J20jXp94CQrkHdn6qXhibD2OqwnU+B0d8x9o=
+APP_KEY=
 APP_DEBUG=true
 APP_URL=https://${DOMAIN}
 
